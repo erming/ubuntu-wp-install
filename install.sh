@@ -1,13 +1,13 @@
 #!/bin/bash
 
 pkgs="
-apache2
-libapache2-mod-php5
-mysql-server
-php5-gd
-php5-mysql
-unzip
-wget
+	mysql-server
+	apache2
+	libapache2-mod-php5
+	php5-gd
+	php5-mysql
+	wget
+	unzip
 "
 
 sudo apt-get install -y $pkgs
