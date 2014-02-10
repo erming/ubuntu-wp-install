@@ -23,9 +23,10 @@ sudo unzip latest.zip
 sudo mv wordpress/* .
 sudo rm -rf index.html wordpress latest.zip
 
-sudo chmod 775 /var/www
-sudo chown www-data:www-data /var/www
+sudo chown -R www-data:www-data /var/www
 sudo adduser $USER www-data
+
+find /var/www -type d | while read dir; do sudo chmod 775 $dir; done
 
 echo
 echo "Script complete!"
