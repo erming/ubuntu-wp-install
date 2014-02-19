@@ -1,13 +1,21 @@
 #!/bin/bash
+dir="/var/www"
+if [ -n "$1" ]; then
+	dir="$1"
+fi
+if [ ! -d "$dir" ]; then
+	echo "install.sh: '$dir': No such directory"
+	exit 0
+fi
 
 pkgs="
-	mysql-server
-	apache2
-	libapache2-mod-php5
-	php5-gd
-	php5-mysql
-	wget
-	unzip
+mysql-server
+apache2
+libapache2-mod-php5
+php5-gd
+php5-mysql
+wget
+unzip
 "
 
 sudo apt-get install -y $pkgs
@@ -17,16 +25,17 @@ sudo service apache2 restart
 
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
 
-cd /var/www
+cd $dir
 sudo wget http://wordpress.org/latest.zip
 sudo unzip latest.zip
+
 sudo mv wordpress/* .
 sudo rm -rf index.html wordpress latest.zip
 
-sudo chown -R www-data:www-data /var/www
+sudo chown -R www-data:www-data $dir
 sudo adduser $USER www-data
 
-find /var/www -type d | while read dir; do sudo chmod 775 $dir; done
+find $dir -type d | while read dir; do sudo chmod 775 $dir; done
 
 echo
 echo "Script complete!"
