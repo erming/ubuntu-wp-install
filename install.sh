@@ -4,8 +4,7 @@ if [ -n "$1" ]; then
 	dir="$1"
 fi
 if [ ! -d "$dir" ]; then
-	echo "install.sh: '$dir': No such directory"
-	exit 0
+	sudo mkdir -p $dir
 fi
 
 pkgs="
@@ -20,10 +19,10 @@ unzip
 
 sudo apt-get install -y $pkgs
 
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+
 sudo a2enmod rewrite
 sudo service apache2 restart
-
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
 
 cd $dir
 sudo wget http://wordpress.org/latest.zip
@@ -35,7 +34,9 @@ sudo rm -rf index.html wordpress latest.zip
 sudo chown -R www-data:www-data $dir
 sudo adduser $USER www-data
 
-find $dir -type d | while read dir; do sudo chmod 775 $dir; done
+find $dir -type d | while read dir
+	do sudo chmod 775 $dir
+done
 
 echo
 echo "Script complete!"
