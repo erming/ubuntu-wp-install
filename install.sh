@@ -19,10 +19,11 @@ unzip
 
 sudo apt-get install -y $pkgs
 
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
-
 sudo a2enmod rewrite
+sudo replace "2M" "10M" -- /etc/php5/apache2/php.ini
 sudo service apache2 restart
+
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
 
 cd $dir
 sudo wget http://wordpress.org/latest.zip
