@@ -1,29 +1,27 @@
 #!/bin/bash
-dir="/var/www"
-if [ -n "$1" ]; then
-	dir="$1"
-fi
+
+read -p "Target directory [/var/www]: " dir
+dir=${dir:-"/var/www"}
 if [ ! -d "$dir" ]; then
 	sudo mkdir -p $dir
 fi
 
-pkgs="
-mysql-server
-apache2
-libapache2-mod-php5
-php5-gd
-php5-mysql
-wget
-unzip
-"
+read -p "Database [wordpress]: " db
+db=${db:-"wordpress"}
 
-sudo apt-get install -y $pkgs
+sudo apt-get install -y mysql-server
+sudo apt-get install -y apache2
+sudo apt-get install -y libapache2-mod-php5
+sudo apt-get install -y php5-gd
+sudo apt-get install -y php5-mysql
+sudo apt-get install -y wget
+sudo apt-get install -y unzip
 
 sudo a2enmod rewrite
 sudo replace "2M" "10M" -- /etc/php5/apache2/php.ini
 sudo service apache2 restart
 
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS $db;"
 
 cd $dir
 sudo wget http://wordpress.org/latest.zip
@@ -39,6 +37,7 @@ find $dir -type d | while read dir
 	do sudo chmod 775 $dir
 done
 
-echo
+echo ""
 echo "Script complete!"
-echo "Please relog current user before proceeding."
+echo "Please reload current user before proceeding."
+echo ""
