@@ -2,12 +2,13 @@
 
 read -p "Target directory [/var/www]: " dir
 dir=${dir:-"/var/www"}
-if [ ! -d "$dir" ]; then
-	sudo mkdir -p $dir
-fi
 
 read -p "Database [wordpress]: " db
 db=${db:-"wordpress"}
+
+if [ ! -d "$dir" ]; then
+	sudo mkdir -p $dir
+fi
 
 sudo apt-get install -y mysql-server
 sudo apt-get install -y apache2
