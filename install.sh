@@ -1,5 +1,4 @@
 #!/bin/bash
-
 read -p "Target directory [/var/www]: " dir
 dir=${dir:-"/var/www"}
 
@@ -33,6 +32,7 @@ sudo rm -rf index.html wordpress latest.zip
 
 sudo chown -R www-data:www-data $dir
 sudo adduser $USER www-data
+sudo newgrp www-data
 
 find $dir -type d | while read dir
 	do sudo chmod 775 $dir
@@ -40,5 +40,4 @@ done
 
 echo ""
 echo "Script complete!"
-echo "Please reload current user before proceeding."
 echo ""
