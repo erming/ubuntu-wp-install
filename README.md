@@ -6,3 +6,7 @@ This script installs:
 - PHP5 (with mysql and gd support)
 - MySQL
 - Wordpress
+
+### Install
+Copy and run this script:  
+```git clone http://github.com/erming/ubuntu-wp-install && bash ubuntu-wp-install/install.sh```
