@@ -27,6 +27,8 @@ cd $dir
 sudo wget http://wordpress.org/latest.zip
 sudo unzip latest.zip
 
+sudo rm -rf wp-*/
+
 sudo mv wordpress/* .
 sudo rm -rf index.html wordpress latest.zip
 
@@ -38,7 +40,6 @@ find $dir -type d | while read dir
 	do sudo chmod 775 $dir
 done
 
-# Go back to start directory
 cd -
 
 echo ""
