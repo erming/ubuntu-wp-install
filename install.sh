@@ -25,7 +25,7 @@ sudo mysql -e "CREATE DATABASE IF NOT EXISTS $db;"
 
 cd $dir
 sudo wget http://wordpress.org/latest.zip
-sudo unzip latest.zip
+sudo unzip latest.zip > /dev/null
 
 sudo rm -rf wp-*/
 
