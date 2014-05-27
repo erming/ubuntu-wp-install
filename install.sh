@@ -38,6 +38,9 @@ find $dir -type d | while read dir
 	do sudo chmod 775 $dir
 done
 
+# Go back to start directory
+cd -
+
 echo ""
 echo "Script complete!"
 echo ""
