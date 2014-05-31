@@ -33,15 +33,15 @@ sudo mv wordpress/* .
 sudo rm -rf index.html wordpress latest.zip
 
 sudo chown -R www-data:www-data $dir
-sudo adduser $USER www-data
-sudo newgrp www-data
+
+if !(groups $USER | grep >/dev/null www-data); then
+	sudo adduser $USER www-data
+	sudo newgrp www-data
+fi
 
 find $dir -type d | while read dir
 	do sudo chmod 775 $dir
 done
 
-cd -
-
-echo ""
+cd - >/dev/null
 echo "Script complete!"
-echo ""
