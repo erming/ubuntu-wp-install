@@ -1,5 +1,5 @@
 This bash script will install Wordpress on your Ubuntu machine.  
-_Estimated time: 2 minutes_ 
+_Estimated time: 1 minute_ 
 
 ### Install
 Copy and run this script:  
