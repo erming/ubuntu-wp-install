@@ -36,8 +36,13 @@ sudo rm -rf index.html wordpress latest.zip
 sudo chown -R www-data:www-data $dir
 sudo chmod -R 775 $dir
 
-if !(groups $USER | grep >/dev/null www-data); then
-	sudo adduser $USER www-data
+u=$SUDO_USER
+if [ -z $u ]; then
+	u=$USER
+fi
+
+if !(groups $u | grep >/dev/null www-data); then
+	sudo adduser $u www-data
 	sudo newgrp www-data
 fi
 
