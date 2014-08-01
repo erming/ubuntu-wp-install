@@ -1,8 +1,8 @@
 #!/bin/bash
-read -p "Target directory [/var/www]: " dir
+read -e -p "Target directory: " -i "/var/www" dir
 dir=${dir:-"/var/www"}
 
-read -p "Database [wordpress]: " db
+read -e -p "Database: " -i "wordpress" db
 db=${db:-"wordpress"}
 
 if [ ! -d "$dir" ]; then
