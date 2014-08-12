@@ -43,8 +43,11 @@ fi
 
 if !(groups $u | grep >/dev/null www-data); then
 	sudo adduser $u www-data
-	sudo newgrp www-data
 fi
 
 cd - >/dev/null
-echo "Script complete!"
+
+echo ""
+echo "Install complete!"
+echo "Please restart your session."
+echo ""
