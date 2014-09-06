@@ -18,7 +18,7 @@ sudo apt-get install -y \
 	wget \
 	unzip
 
-sudo replace "2M" "10M" -- /etc/php/fpm/php.ini
+sudo replace "2M" "10M" -- /etc/php5/fpm/php.ini
 sudo service php5-fpm restart
 
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS $db;"
@@ -45,6 +45,10 @@ if !(groups $u | grep >/dev/null www-data); then
 fi
 
 cd - >/dev/null
+
+sudo cp conf/wordpress /etc/nginx/sites-enabled
+sudo replace "/var/www" $dir -- /etc/nginx/sites-enabled/wordpress
+sudo service nginx restart
 
 echo ""
 echo "Install complete!"
