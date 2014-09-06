@@ -11,16 +11,15 @@ fi
 
 sudo apt-get install -y \
 	mysql-server \
-	apache2 \
-	libapache2-mod-php5 \
+	nginx \
+	php5-fpm \
 	php5-gd \
 	php5-mysql \
 	wget \
 	unzip
 
-sudo a2enmod rewrite
-sudo replace "2M" "10M" -- /etc/php5/apache2/php.ini
-sudo service apache2 restart
+sudo replace "2M" "10M" -- /etc/php/fpm/php.ini
+sudo service php5-fpm restart
 
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS $db;"
 
