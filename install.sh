@@ -50,7 +50,6 @@ sites="/etc/nginx/sites-enabled"
 
 sudo cp conf/wordpress $sites
 sudo replace "/var/www" $dir -- "$sites/wordpress"
-sudo service nginx restart
 
 if [ -e "$sites/default" ]; then
 	read -r -n 1 -p "Delete 'default' nginx site? (y/n)"
@@ -59,6 +58,8 @@ if [ -e "$sites/default" ]; then
 	fi
 	echo ""
 fi
+
+sudo service nginx restart
 
 echo ""
 echo "Install complete!"
