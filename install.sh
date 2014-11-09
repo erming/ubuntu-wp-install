@@ -1,4 +1,6 @@
 #!/bin/bash
+pwd=`dirname $0`
+
 read -e -p "Target directory: " -i "/var/www" dir
 dir=${dir:-"/var/www"}
 
@@ -48,7 +50,7 @@ cd - >/dev/null
 
 sites="/etc/nginx/sites-enabled"
 
-sudo cp conf/wordpress $sites
+sudo cp "$pwd/conf/wordpress" $sites
 sudo replace "/var/www" $dir -- "$sites/wordpress"
 
 if [ -e "$sites/default" ]; then
