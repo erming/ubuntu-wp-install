@@ -14,6 +14,7 @@ fi
 sudo apt-get install -y \
 	mysql-server \
 	nginx \
+	php5-curl \
 	php5-fpm \
 	php5-gd \
 	php5-mysql \

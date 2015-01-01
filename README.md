@@ -7,6 +7,6 @@ Copy and run this script:
 
 This script installs:
 - NGINX
-- PHP5 (with mysql and gd support)
+- PHP5 (with mysql, curl and gd support)
 - MySQL
 - Wordpress
